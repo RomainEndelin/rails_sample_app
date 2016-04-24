@@ -1,0 +1,15 @@
+one:
+  follower: romain
+  followed: lana
+
+two:
+  follower: romain
+  followed: malory
+
+three:
+  follower: lana
+  followed: romain
+
+four:
+  follower: archer
+  followed: romain
