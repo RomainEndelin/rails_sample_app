@@ -1,0 +1,27 @@
+build:
+  image: ruby2.2.4
+  commands:
+    - cp config/drone.database.yml config/database.yml
+    - bundle install
+    - psql -c 'create database test;' - U postgres -h 127.0.0.1
+    - bin/rake db:schema:load
+    - bin/rake test:all
+  environment:
+    - RAILS_ENV=test
+
+deploy:
+  heroku:
+    app: rails-sampleapp-kilik
+    token: $$HEROKU_TOKEN
+    when:
+      branch: master
+
+notify:
+  email:
+    from: romain@endelin.fr
+    host: endelin.fr
+    port: 465
+    username: kilik
+    password: $$EMAIL_PASSWORD
+    recipients:
+      - romain@endelin.fr
