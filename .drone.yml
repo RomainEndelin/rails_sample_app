@@ -20,7 +20,7 @@ notify:
   email:
     from: romain@endelin.fr
     host: endelin.fr
-    port: "465"
+    port: 465
     username: kilik
     password: $$EMAIL_PASSWORD
     recipients:
