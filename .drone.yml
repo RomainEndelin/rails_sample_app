@@ -26,6 +26,6 @@ notify:
     host: endelin.fr
     port: 465
     username: kilik
-    password: $$EMAIL_PASSWORD
+    password: "$$EMAIL_PASSWORD"
     recipients:
       - romain@endelin.fr
