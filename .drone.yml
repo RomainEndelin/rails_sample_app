@@ -1,5 +1,5 @@
 build:
-  image: "ruby:2.2.4"
+  image: "ruby:2.2"
   commands:
     - cp config/drone.database.yml config/database.yml
     - bundle install
