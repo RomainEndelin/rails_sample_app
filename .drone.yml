@@ -9,6 +9,10 @@ build:
   environment:
     - RAILS_ENV=test
 
+compose:
+  database:
+    image: postgres
+
 deploy:
   heroku:
     app: rails-sampleapp-kilik
