@@ -1,17 +1,30 @@
-build:
-  image: "ruby:2.2"
-  commands:
-    - cp config/drone.database.yml config/database.yml
-    - bundle install
-    - psql -c 'create database test;' - U postgres -h 127.0.0.1
-    - bin/rake db:schema:load
-    - bin/rake test:all
-  environment:
-    - RAILS_ENV=test
+cache:
+  mount:
+    - /drone/bundle
 
 compose:
   database:
     image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=test
+
+branch:
+  - master
+  - develop
+
+build:
+  image: "ruby:2.2.5"
+  commands:
+    - cp config/drone.database.yml config/database.yml
+    - bundle install --path /drone/bundle
+    - bundle exec rake db:schema:load
+    - bundle exec rake test:all
+  environment:
+    - RAILS_ENV=test
+
+# services:
+#   - postgres
 
 deploy:
   heroku:
